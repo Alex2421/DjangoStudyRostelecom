@@ -29,4 +29,4 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ['title', 'author', 'date',]
     list_display_links = ('date',)
     search_fields = ['title__startswith', 'tags__title']
-    list_per_page = 5
+    list_per_page = 15

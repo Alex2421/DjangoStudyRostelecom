@@ -13,6 +13,7 @@ class Post(models.Model):
     content = models.TextField('Статья')
     date_posted = models.DateTimeField(default=timezone.now, verbose_name='Дата')
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
+    #category = models.CharField(choices=categories, max_length=20, verbose_name='Категории')
 
     def __str__(self):
         return self.title

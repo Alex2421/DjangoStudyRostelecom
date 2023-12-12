@@ -8,6 +8,7 @@ from django.views.generic import (
     DeleteView
 )
 from .models import Post
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
@@ -64,4 +65,9 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 def about(request):
-    return render(request, 'blog/about.html', {'title': 'О клубе Python Bites'})
+    return render(request, 'blog/about.html', {'title': 'О клубе Python RTK'})
+
+
+@login_required
+def profile(request):
+	return render(request, 'users/profile.html')
