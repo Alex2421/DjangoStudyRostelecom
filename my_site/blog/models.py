@@ -32,3 +32,7 @@ class Post(models.Model):
    #     return reverse('post-detail', kwargs={'pk': self.pk})
 
 
+class Meta:
+    ordering = ['title', 'date', 'author' ]
+    verbose_name= 'Новость'
+    verbose_name_plural= 'Новости'

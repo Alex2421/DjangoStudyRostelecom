@@ -1,5 +1,33 @@
 ﻿{% extends "blog/base.html" %}
 {% block content %}
+
+  <!--Сортировка  РАЗОБРАТЬСЯ!!
+<div class="content_center">
+    <div class="row">
+        <label><h7> Фильтры: (Всего :{{ total }} результатов) </h7>
+            <form method="post">
+                {% csrf_token %}
+                        <div class="form-group col-11">
+                            <select class="form-select" name="author_filter" style="width:30%">
+                                <option value="0">Все авторы</option>
+                                {% for author in author_list %}
+                                <option value="{{ author.id }}" {% if selected_author == author.id %} selected {% endif %}> {{ author.username }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                            <select class="form-select" name="category_filter" style="width:40%">
+                                <option value="0">Все категории</option>
+                                {% for c in categories %}
+                                <option value="{{ forloop.counter }}" {% if selected_category == forloop.counter %} selected {% endif %}> {{ c.1 }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                            <input type="submit" class="btn btn-success" value="Применить">
+                        </div>
+            </form>
+        </label>
+    </div> -->
+
    {% for post in posts %}
         <article class="media content-section">
           <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
