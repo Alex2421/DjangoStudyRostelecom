@@ -6,6 +6,7 @@ from django.views.generic import (
     CreateView,
     UpdateView,
     DeleteView
+
 )
 from .models import Post
 from django.contrib.auth.decorators import login_required
@@ -19,11 +20,13 @@ def home(request):
 
 
 class PostListView(ListView):
+    paginate_by = 5
     model = Post
     template_name = 'blog/home.html'
     context_object_name = 'posts'
+
     ordering = ['-date_posted']
-    paginate_by = 5
+
 
 class PostDetailView(DetailView):
     model = Post
@@ -67,6 +70,8 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 def about(request):
     return render(request, 'blog/about.html', {'title': 'О клубе Python RTK'})
 
+def meeting(request):
+    return render(request, 'blog/meeting.html', {'title': 'Встречи клуба'})
 
 @login_required
 def profile(request):
