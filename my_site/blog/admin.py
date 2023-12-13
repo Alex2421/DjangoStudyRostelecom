@@ -1,8 +1,9 @@
 from django.contrib import admin
 from .models import Post
 admin.site.register(Post)
-from django.contrib import admin
 from django.db.models.functions import Length
+
+
 
 
 # Register your models here.
@@ -26,7 +27,10 @@ class PostFilter(admin.SimpleListFilter):
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'author', 'date']
-    list_filter = ['title', 'author', 'date',]
+    list_filter  = ['title', 'author', 'date',]
     list_display_links = ('date',)
     search_fields = ['title__startswith', 'tags__title']
     list_per_page = 15
+
+#admin.site.register(Post, PostAdmin)
+
