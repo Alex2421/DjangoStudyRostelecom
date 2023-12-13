@@ -14,29 +14,21 @@ class Post(models.Model):
     #поля
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, verbose_name='Автор')
     title = models.CharField(max_length=200, verbose_name='Название')
-    anounc = models.TextField('Аннотация', null=True, max_length=250)
+    anouncement = models.TextField('Аннотация', null=True, max_length=150)
     content = models.TextField('Статья')
     date_posted = models.DateTimeField(default=timezone.now, verbose_name='Дата')
     category = models.CharField(max_length=50, choices=categories)
 
+  #   def __str__(self):
+  #      return f'{self.title} от: {str(self.date)[:16]}'
 
-
-
-
-
-
-
-  # anouncement = models.TextField ('Аннотация', max_length=250)
-  # author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
-
-
-    # text = models.TextField('Текст новости')
-    #category = models.CharField(choices=categories, max_length=20, verbose_name='Категории')
+    def get_absolute_url(self):
+     return f'/post/{self.id}'
 
     def __str__(self):
         return self.title
 
-    def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk': self.pk})
+   # def get_absolute_url(self):
+   #     return reverse('post-detail', kwargs={'pk': self.pk})
 
 
