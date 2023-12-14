@@ -32,7 +32,7 @@ git clone https://github.com/..............
 ```
   2. Требуется создать и активировать виртуальную среду:
 ```bash
-$ python -m venv venv
+$ python3 -m venv venv
 или создать ее в IDE
 
 # Активация виртуальной среды в Windows:
@@ -40,6 +40,7 @@ $ source venv/Scripts/activate
 
 # Активация виртуальной среды в Linux/Mac:
 $ source venv/bin/activate
+  source env/bin/activate
 ```
   3. Установка и создание requirements.txt пакета в python:
 ```bash
