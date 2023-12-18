@@ -62,7 +62,11 @@ $ python manage.py createsuperuser
  5. Запуск Django сервера:
 ```bash
 $ python manage.py runserver
+$ python manage.py makemigrations
+$ python manage.py migrate
+
 ```
-6. Установка Postgre
+6. Установка Postgre:
+   
 $  windows https://www.postgresql.org/download/
 + настройки firewall netsh advfirewall firewall add rule name="Postgre Port" dir=in action=allow protocol=TCP localport=5432
