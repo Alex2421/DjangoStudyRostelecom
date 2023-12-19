@@ -37,7 +37,7 @@ $ python3 -m venv venv
 
 # Активация виртуальной среды в Windows:
 $ source venv/Scripts/activate
-         venv/Scripts/activate 
+         .venv/Scripts/activate 
 
 # Активация виртуальной среды в Linux/Mac:
 $ source venv/bin/activate
