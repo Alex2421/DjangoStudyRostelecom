@@ -1,14 +1,13 @@
 from django.contrib import admin
 from .models import Post
 admin.site.register(Post)
-from django.db.models.functions import Length
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'author', 'date']
     list_filter  = ['title', 'author', 'date',]
     list_display_links = ('date',)
     search_fields = ['title__startswith', 'tags__title']
-    list_per_page = 15
+    list_per_page = 5
 
 
 
@@ -31,6 +30,3 @@ class PostFilter(admin.SimpleListFilter):
                                                                      text_len__gte=100)
         elif self.value() == 'L':
             return queryset.annotate(text_len=Length('text')).filter(text_len__gt=500)
-
-
-
