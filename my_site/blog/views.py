@@ -8,15 +8,9 @@ from django.views.generic import (
     DeleteView
 )
 from .models import Post
-from django.contrib.auth.decorators import login_required
 
 
 def home(request):
-    #категории
-  #  post = post.published.all()
-  #  a = post.first()
-  #  print('Статьи', a.title, 'категории:', a.categoties)
-
     context = {
         'posts': Post.objects.all()
     }
@@ -24,7 +18,6 @@ def home(request):
 
 
 class PostListView(ListView):
-    paginate_by = 5
     model = Post
     template_name = 'blog/home.html'
     context_object_name = 'posts'
@@ -72,15 +65,5 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def about(request):
     return render(request, 'blog/about.html', {'title': 'О клубе Python RTK'})
-
 def meeting(request):
     return render(request, 'blog/meeting.html', {'title': 'Встречи клуба'})
-
-#def announcements(request):
-#    return render(request, 'blog/announcements.html', {'title': 'Обьявления'})
-
-@login_required
-def profile(request):
-	return render(request, 'users/profile.html')
-
-
