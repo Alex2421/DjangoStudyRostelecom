@@ -25,7 +25,7 @@ class Post(models.Model):
     #поля
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, verbose_name='Автор')
     title = models.CharField(max_length=200, verbose_name='Название')
-    anouncement = models.TextField('Аннотация', null=True, max_length=150)
+    anouncement = models.TextField('Аннотация', null=True, max_length=1000)
     content = models.TextField('Статья')
     date_posted = models.DateTimeField(default=timezone.now, verbose_name='Дата')
     category = models.CharField(max_length=50, choices=categories)
