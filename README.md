@@ -1,8 +1,8 @@
 ## ⚙️ ДЗ №3: Выгрузка сайта на хостинг
   
-  http://studypythonrtk23.pythonanywhere.com/
-    1. Обновить данные на хостинге 
-       git clone ......
+     http://studypythonrtk23.pythonanywhere.com/
+    
+     1. Обновить данные на хостинге git clone ......
   
   
   ## ⚙️ ДЗ №2: Коллеги, прошу строго не судить! Пересобрал новый проект, все, что успел сделать, залил) старй проект лежит тут https://github.com/Alex2421/DjangoNewsRostelecom
