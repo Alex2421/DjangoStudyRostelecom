@@ -36,7 +36,6 @@
             </div>
             <!-- Правая часть навигационной панели -->
             <div class="navbar-nav">
-
             {% if user.is_authenticated %}
                 <a class="nav-item nav-link" href="{% url 'post-create' %}">Новая запись</a>
             	<a class="nav-item nav-link" href="{% url 'profile' %}">Профиль</a>
@@ -45,7 +44,6 @@
             	<a class="nav-item nav-link" href="{% url 'login' %}">Вход</a>
             	<a class="nav-item nav-link" href="{% url 'register' %}">Регистрация</a>
           	{% endif %}
-
             </div>
           </div>
         </div>
@@ -54,7 +52,6 @@
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
-
 <!-- Сообщение об успешной регистрации -->
             {% if messages %}
         	{% for message in messages %}
@@ -62,8 +59,7 @@
             	{{ message }}
           	</div>
         	{% endfor %}
-{% endif %}
-
+          {% endif %}
           {% block content %}{% endblock %}
         </div>
         <div class="col-md-4">
