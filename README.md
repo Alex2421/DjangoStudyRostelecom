@@ -71,6 +71,9 @@ $ python manage.py createsuperuser
 $ python manage.py runserver
 $ python manage.py makemigrations
 $ python manage.py migrate
+$ pip freeze | grep Django  - узнать версию установленного пакета
+$ pip install django==4.2.8 - установка нужного пакета
+
 
 ```
 6. Установка Postgre:
