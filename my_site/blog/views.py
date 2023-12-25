@@ -67,3 +67,6 @@ def about(request):
     return render(request, 'blog/about.html', {'title': 'О клубе Python RTK'})
 def meeting(request):
     return render(request, 'blog/meeting.html', {'title': 'Встречи клуба'})
+
+def anouncement(request):
+    return render(request, 'blog/anouncement.html', {'title': 'Встречи клуба'})
