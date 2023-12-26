@@ -6,10 +6,14 @@ from .models import Profile
 #Регистрация пользователя
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
-
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+#update foto
+#class UserProfileForm(forms.ModelForm):
+#    class Meta:
+#        model = UserProfile
+#        fields = ('photo')
 
 #Заполнение и обновление профилей
 class UserUpdateForm(forms.ModelForm):

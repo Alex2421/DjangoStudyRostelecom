@@ -9,7 +9,10 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
-
+#update foto
+#class UserProfile(models.Model):
+#    user = models.OneToOneField(User)
+#    photo = models.ImageField(upload_to='profile_images', blank=True)
 #сжатие изображений
 #    def save(self):
 #        super().save()
