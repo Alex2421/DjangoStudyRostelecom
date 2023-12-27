@@ -130,7 +130,7 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "static"
 #python manage.py collectstatic
 STATICFILES_DIRS = [
-    "home/static/",
+    "blog/static/",
 ]
 
 # Default primary key field type
