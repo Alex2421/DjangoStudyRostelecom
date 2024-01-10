@@ -6,9 +6,24 @@
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Добро пожаловать в клуб Python RTK</legend>
+                <p><h4 >Регистрация нового пользователя</h4></p>
                 {% csrf_token %}
                 {{ form|crispy }}
+                <div class="form-check">
+                        <h5>Тип аккаунта:</h5>
+                        <div>
+                            <input class="form-check-input" type="radio" id="author" name="account_type" value="author"/>
+                            <label class="form-check-label" for="author">Автор</label>
+                        </div>
+                        <div>
+                            <input class="form-check-input" type="radio" id="reader" name="account_type" value="reader" checked/>
+                            <label class="form-check-label" for="reader" >Читатель</label>
+                         </div>
+                    </div>
             </fieldset>
+            <div class="alert alert-danger" role="alert">
+            Нажимая на кнопку Зарегистрироваться, Вы соглашаетесь нести ответственность за все действия, совершенные под Вашим аккаунтом, электронным адресом или паролем, если применимо, и соглашаетесь, что Вы не будете продавать, передавать или переуступать Ваше членство, какие-либо права, связанные с членством, или какой-либо электронный адрес, полученный на Сайте.
+            </div>
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit">Регистрация</button>
             </div>
@@ -20,3 +35,7 @@
         </div>
     </div>
 {% endblock content %}
+
+
+
+
