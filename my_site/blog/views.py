@@ -1,3 +1,5 @@
+import random
+from django.db.models import Count
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy, reverse
@@ -10,6 +12,8 @@ from django.views.generic import (
 )
 from .models import Post
 from django.shortcuts import render
+from django.views.generic import DetailView
+# from .mixins import ViewCountMixin
 
 
 
@@ -116,11 +120,28 @@ class PostListView(ListView):
     ordering = ['-date_posted']
     paginate_by = 5
 
+#счетчик уникальных просмотров
+
 class PostDetailView(DetailView):
     model = Post
-
-
-
+    # template_name = 'blog/post_detail.html'
+    # context_object_name = 'post'
+    # queryset = model.objects.detail()
+    #
+    # def get_similar_articles(self, obj):
+    #     article_tags_ids = obj.tags.values_list('id', flat=True)
+    #     similar_articles = Post.objects.filter(tags__in=article_tags_ids).exclude(id=obj.id)
+    #     similar_articles = similar_articles.annotate(related_tags=Count('tags')).order_by('-related_tags')
+    #     similar_articles_list = list(similar_articles.all())
+    #     random.shuffle(similar_articles_list)
+    #     return similar_articles_list[:6]
+    #
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['title'] = self.object.title
+    #     context['form'] = CommentCreateForm
+    #     context['similar_articles'] = self.get_similar_articles(self.object)
+    #     return context
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):

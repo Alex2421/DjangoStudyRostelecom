@@ -1,7 +1,12 @@
 from django.contrib import admin
 from .models import Post
-#admin.site.register(Post)
+from .models import ViewCount
 from django.db.models.functions import Length
+
+#счетчик уникальных просмотров
+@admin.register(ViewCount)
+class ViewCountAdmin(admin.ModelAdmin):
+    pass
 
 # class PostFilter(admin.SimpleListFilter):
 #     title = 'По длине новости'

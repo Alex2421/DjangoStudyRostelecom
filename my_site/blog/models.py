@@ -12,6 +12,24 @@ from users.models import Profile
 owner = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.CASCADE)
 
 
+#счетчик уникальных просмотров
+class ViewCount(models.Model):
+    """
+    Модель просмотров для статей
+    """
+    post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='views')
+    ip_address = models.GenericIPAddressField(verbose_name='IP адрес')
+    viewed_on = models.DateTimeField(auto_now_add=True, verbose_name='Дата просмотра')
+
+    class Meta:
+        ordering = ('-viewed_on',)
+        indexes = [models.Index(fields=['-viewed_on'])]
+        verbose_name = 'Просмотр'
+        verbose_name_plural = 'Просмотры'
+
+    def __str__(self):
+        return self.article.title
+
 
 # class Post(models.Model):
 #     title = models.CharField(max_length=100)
@@ -40,6 +58,7 @@ owner = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.CASCA
 
 
 class Post(models.Model):
+    objects = None
     categories = (('O', 'Operator'),
                   ('S', 'Science'),
                   ('I', 'Internet'),
@@ -53,7 +72,11 @@ class Post(models.Model):
     category = models.CharField(max_length=50, choices=categories)
     imagepost = models.ImageField(default='defaultpost.jpg', upload_to='post_pics')
 
-  #   def __str__(self):
+ # счетчик уникальных просмотров
+ #    title = models.CharField(verbose_name='Заголовок', max_length=255)
+ #    slug = models.SlugField(verbose_name='Альт.название', max_length=255, blank=True, unique=True)
+
+    #   def __str__(self):
   #      return f'{self.title} от: {str(self.date)[:16]}'
 
     def get_absolute_url(self):
