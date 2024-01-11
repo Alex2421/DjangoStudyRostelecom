@@ -19,16 +19,16 @@ class ViewCount(models.Model):
     """
     post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='views')
     ip_address = models.GenericIPAddressField(verbose_name='IP адрес')
-    viewed_on = models.DateTimeField(auto_now_add=True, verbose_name='Дата просмотра')
+    view_data = models.DateTimeField(auto_now_add=True, verbose_name='Дата просмотра')
 
     class Meta:
-        ordering = ('-viewed_on',)
-        indexes = [models.Index(fields=['-viewed_on'])]
-        verbose_name = 'Просмотр'
-        verbose_name_plural = 'Просмотры'
+        ordering = ('-view_data',)
+        indexes = [models.Index(fields=['-view_data'])]
+        # verbose_name = 'Просмотр'
+        # verbose_name_plural = 'Просмотры'
 
     def __str__(self):
-        return self.article.title
+        return self.post.title
 
 
 # class Post(models.Model):
@@ -65,9 +65,9 @@ class Post(models.Model):
                   ('OS', 'Operation System'))
     #поля
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, verbose_name='Автор')
-    title = models.CharField('Название', max_length=50, default='', validators=[MinLengthValidator(10)], null=False)
-    anouncement = models.TextField('Аннотация', max_length=50, default='', validators=[MinLengthValidator(10)], null=False)
-    content = models.TextField('Статья', max_length=50, default='', validators=[MinLengthValidator(10)], null=False)
+    title = models.CharField('Название', max_length=100, default='', validators=[MinLengthValidator(10)], null=False)
+    anouncement = models.TextField('Аннотация', max_length=500, default='', validators=[MinLengthValidator(10)], null=False)
+    content = models.TextField('Статья', max_length=100000, default='', validators=[MinLengthValidator(10)], null=False)
     date_posted = models.DateTimeField(default=timezone.now, verbose_name='Дата')
     category = models.CharField(max_length=50, choices=categories)
     imagepost = models.ImageField(default='defaultpost.jpg', upload_to='post_pics')
@@ -85,14 +85,15 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-   # def get_absolute_url(self):
-   #     return reverse('post-detail', kwargs={'pk': self.pk})
+    def get_views(self):
+        return self.views.count()
 
 
     class Meta:
         ordering = ['title', 'date_posted']
         verbose_name= 'Новость'
         verbose_name_plural= 'Новости'
+
 
 
 #class Comment(models.Model):
@@ -117,12 +118,12 @@ class Post(models.Model):
 #     pass
 
 
-
-#like
-class Favorite_Taste(models.Model):
-    user_id_favorite = models.ForeignKey(User, on_delete=models.CASCADE, default='')
-    post_id_favorite = models.ForeignKey(Post, on_delete=models.CASCADE, default='')
-    favorite_choices = models.BooleanField()
-
-    class Meta:
-        unique_together = ('user_id_favorite', 'post_id_favorite')
+#
+# #like
+# class Favorite_Taste(models.Model):
+#     user_id_favorite = models.ForeignKey(User, on_delete=models.CASCADE, default='')
+#     post_id_favorite = models.ForeignKey(Post, on_delete=models.CASCADE, default='')
+#     favorite_choices = models.BooleanField()
+#
+#     class Meta:
+#         unique_together = ('user_id_favorite', 'post_id_favorite')

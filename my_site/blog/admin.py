@@ -3,10 +3,22 @@ from .models import Post
 from .models import ViewCount
 from django.db.models.functions import Length
 
+#new image
+# @admin.register(Image)
+# class ImageAdmin(admin.ModelAdmin):
+#     list_display = ['title','article','image_tag']
+
+
+
 #счетчик уникальных просмотров
 @admin.register(ViewCount)
 class ViewCountAdmin(admin.ModelAdmin):
-    pass
+      list_display = ['post','ip_address','view_data']
+
+
+
+
+
 
 # class PostFilter(admin.SimpleListFilter):
 #     title = 'По длине новости'

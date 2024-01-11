@@ -17,6 +17,7 @@
       <h2 class="article-title">{{ object.title }}</h2>
       <p class="=article-anouncement">{{object.anouncement}}</p>
       <p class="article-content"><a href="{{ post.get_absolute_url }}" class="text-white fw-bold">Полный текст ...</a></p>
+      <p><small>Просмотры: {{ post.get_views }}</small></p>
       <!--<p class="article-content">{{ object.content }}</p> -->
     </div>
   </article>

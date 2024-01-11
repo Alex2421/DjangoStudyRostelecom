@@ -123,11 +123,11 @@ class PostListView(ListView):
     paginate_by = 5
 
 #счетчик уникальных просмотров
-
-class PostDetailView(DetailView):
+from .utils import ViewCountMixin
+class PostDetailView(ViewCountMixin, DetailView):
     model = Post
-    # template_name = 'blog/post_detail.html'
-    # context_object_name = 'post'
+    template_name = 'blog/post_detail.html'
+    context_object_name = 'post'
     # queryset = model.objects.detail()
     #
     # def get_similar_articles(self, obj):
