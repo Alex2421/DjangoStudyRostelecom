@@ -15,11 +15,13 @@ from django.shortcuts import render
 from django.views.generic import DetailView
 # from .mixins import ViewCountMixin
 
-
-
 # from .forms import ViewCountMixin
 # from django.views.generic import DetailView
 # class PostDetailView(ViewCountMixin, DetailView):
+
+
+
+
 
 
 
@@ -147,6 +149,8 @@ class PostDetailView(DetailView):
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'anouncement', 'content']
+
+
 
     def form_valid(self, form):
         form.instance.author = self.request.user

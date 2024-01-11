@@ -11,9 +11,9 @@ def register(request):
     if request.method=='POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save() #появляется новый пользователь
+            user = form.save() #появляется новый пользователь,
             category = request.POST['account_type']
-            if category == 'author':
+            if category == 'author': #если выбрали категорю автора, отправляем на проверку
                 group = Group.objects.get(name='Actions Required')
                 user.groups.add(group)
             else:
@@ -26,7 +26,8 @@ def register(request):
             login(request,user)
             messages.success(request,f'{username} был зарегистрирован!')
 
-#           return redirect('home')
+            return redirect('blog-home')
+
     else:
         form = UserCreationForm()
     context = {'form':form}
@@ -75,16 +76,16 @@ def profile(request):
 
     return render(request, 'users/profile.html', context)
 
-def registration(request):
-    if request.method=='POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save() #появляется новый пользователь
-            category = request.POST['account_type']
-            if category == 'author':
-                group = Group.objects.get(name='Actions Required')
-                user.groups.add(group)
-    #         else:
+# def registration(request):
+#     if request.method=='POST':
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             user = form.save() #появляется новый пользователь
+#             category = request.POST['account_type']
+#             if category == 'author':
+#                 group = Group.objects.get(name='Actions Required')
+#                 user.groups.add(group)
+#     #         else:
     #             group = Group.objects.get(name='Reader')
     #             user.groups.add(group)
     #         username = form.cleaned_data.get('username')
