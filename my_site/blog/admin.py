@@ -37,11 +37,18 @@ class ViewCountAdmin(admin.ModelAdmin):
 #                                                                      text_len__gte=100)
 #         elif self.value() == 'L':
 #             return queryset.annotate(text_len=Length('text')).filter(text_len__gt=500)
+from .models import *
+class PostImageInline(admin.TabularInline):
+    model = Image
+    extra = 3
+    readonly_fields = ('id','image_tag')
+
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'date_posted']
+    list_display = ['title', 'author', 'date_posted', 'image_tag']
     list_filter  = [ 'author', 'date_posted']
+    inlines = [PostImageInline,]
     # list_display_links = ('date',)
     # search_fields = ['title__startswith', 'tags__title']
     # list_per_page = 5

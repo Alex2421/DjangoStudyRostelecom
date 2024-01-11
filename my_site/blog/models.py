@@ -5,6 +5,8 @@ from django.urls import reverse
 from django.core.validators import MinLengthValidator
 from django.db.models import ImageField
 from django.core.validators import RegexValidator
+from django.utils.safestring import mark_safe
+
 validate_phone = RegexValidator('\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}',
                                       message='Номер телефона указан некорректно')
 
@@ -70,14 +72,8 @@ class Post(models.Model):
     content = models.TextField('Статья', max_length=100000, default='', validators=[MinLengthValidator(10)], null=False)
     date_posted = models.DateTimeField(default=timezone.now, verbose_name='Дата')
     category = models.CharField(max_length=50, choices=categories)
-    imagepost = models.ImageField(default='defaultpost.jpg', upload_to='post_pics')
+#    imagepost = models.ImageField(default='defaultpost.jpg', upload_to='post_pics')
 
- # счетчик уникальных просмотров
- #    title = models.CharField(verbose_name='Заголовок', max_length=255)
- #    slug = models.SlugField(verbose_name='Альт.название', max_length=255, blank=True, unique=True)
-
-    #   def __str__(self):
-  #      return f'{self.title} от: {str(self.date)[:16]}'
 
     def get_absolute_url(self):
      return f'/post/{self.id}'
@@ -88,11 +84,40 @@ class Post(models.Model):
     def get_views(self):
         return self.views.count()
 
+# изображения
+    def image_tag(self):
+        image = Image.objects.filter(post=self)
+        print('!!!!', image)
+        if image:
+                return mark_safe(f'<img src="{image[0].image.url}" height="50px" width="auto" />')
+        else:
+                return '(no image)'
+
 
     class Meta:
         ordering = ['title', 'date_posted']
         verbose_name= 'Новость'
         verbose_name_plural= 'Новости'
+
+
+
+class Image(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    title = models.CharField(max_length=50, blank=True)
+    image = models.ImageField(upload_to='post_images/',null=True,blank=True) #лучше добавить поле default !!!
+
+    def __str__(self):
+        return self.title
+
+    def image_tag(self):
+        if self.image is not None:
+            return mark_safe(f'<img src="{self.image.url}" height="50px" width="auto" />')
+        else:
+            return '(no image)'
+
+
+
+
 
 
 
